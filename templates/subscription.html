@@ -2,821 +2,208 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<title>PabloPanel Subscription | {{ user_name }}</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌐 𝕋𝕦𝕣𝕓𝕠 𝕋𝕦𝕟𝕟𝕖𝕝 𝕄𝕄 🌐 | {{ user_name }}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='11' fill='%230f2238'/%3E%3Ccircle cx='20' cy='20' r='13' stroke='%2336c5f4' stroke-width='2' fill='none' opacity='.35'/%3E%3Ccircle cx='20' cy='20' r='8.5' stroke='%2336c5f4' stroke-width='2' fill='none' opacity='.65'/%3E%3Ccircle cx='20' cy='20' r='4' fill='%2336c5f4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700&family=Noto+Sans+Math&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    -webkit-tap-highlight-color:transparent;
-}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 
 :root{
-    --bg:#02050c;
-    --card:rgba(7,15,30,.86);
-    --card2:rgba(3,9,20,.95);
-    --blue:#168cff;
-    --cyan:#00eaff;
-    --blue2:#246bff;
-    --purple:#7b4dff;
-    --green:#00f5a0;
-    --red:#ff416c;
-    --white:#f5f9ff;
-    --muted:#71809c;
-    --line:rgba(0,220,255,.15);
-}
-
-html,body{
-    min-height:100%;
+    --ink:#070c18;
+    --deep:#0a1224;
+    --panel:#101a2f;
+    --panel2:#15213a;
+    --line:#1f2d4d;
+    --line2:#172340;
+    --text:#e8eefc;
+    --muted:#92a0c1;
+    --faint:#62708f;
+    --accent:#36c5f4;
+    --accent-ink:#04202c;
+    --violet:#9a86ff;
+    --ok:#35d39a;
+    --warn:#f6b73c;
+    --bad:#ff6b86;
+    --font:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --display:'Sora','Manrope',system-ui,sans-serif;
+    --math:'Noto Sans Math','Cambria Math','STIX Two Math','Segoe UI Symbol','Apple Symbols','Noto Sans Symbols 2',sans-serif;
 }
 
 body{
+    min-height:100vh;
     background:
-        radial-gradient(circle at 8% 0%,rgba(0,160,255,.14),transparent 30%),
-        radial-gradient(circle at 92% 15%,rgba(83,65,255,.12),transparent 30%),
-        radial-gradient(circle at 50% 100%,rgba(0,210,255,.07),transparent 35%),
-        var(--bg);
-    color:var(--white);
-    font-family:Arial,Helvetica,sans-serif;
-    overflow-x:hidden;
+        radial-gradient(800px 460px at 50% -8%, rgba(54,197,244,.09), transparent 62%),
+        var(--ink);
+    color:var(--text);
+    font-family:var(--font);
+    font-size:14px;line-height:1.5;
+    -webkit-font-smoothing:antialiased;
 }
 
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-5;
-    background-image:
-        linear-gradient(rgba(0,190,255,.025) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(0,190,255,.025) 1px,transparent 1px);
-    background-size:42px 42px;
-    pointer-events:none;
-}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
-body::after{
-    content:"";
-    position:fixed;
-    width:430px;
-    height:430px;
-    left:50%;
-    top:30%;
-    transform:translate(-50%,-50%);
-    border-radius:50%;
-    background:rgba(0,145,255,.055);
-    filter:blur(110px);
-    z-index:-4;
-    pointer-events:none;
-}
-
-button,input{
-    font:inherit;
-}
-
-button{
-    cursor:pointer;
-}
-
-.page{
-    width:100%;
-    max-width:780px;
-    margin:auto;
-    padding:14px;
-}
+.page{max-width:620px;margin:0 auto;padding:18px 16px 40px}
 
 .card{
-    position:relative;
-    background:
-        linear-gradient(
-            145deg,
-            rgba(10,23,45,.86),
-            rgba(3,8,19,.94)
-        );
-    border:1px solid var(--line);
-    border-radius:25px;
-    backdrop-filter:blur(24px);
-    -webkit-backdrop-filter:blur(24px);
-    box-shadow:
-        0 18px 55px rgba(0,0,0,.28),
-        inset 0 0 35px rgba(0,190,255,.025);
-    overflow:hidden;
+    background:var(--panel);
+    border:1px solid var(--line2);
+    border-radius:20px;
 }
 
-.card::before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:12%;
-    right:12%;
-    height:1px;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(0,234,255,.7),
-        transparent
-    );
-}
-
-/* HEADER */
-
+/* header */
 .header{
-    padding:17px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:14px 16px;margin-bottom:14px;
 }
-
-.brand{
-    display:flex;
-    align-items:center;
-    gap:11px;
-}
-
-.logo{
-    width:44px;
-    height:44px;
-    border-radius:14px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:18px;
-    font-weight:900;
-    color:var(--cyan);
-    background:
-        linear-gradient(
-            135deg,
-            rgba(0,234,255,.16),
-            rgba(55,85,255,.16)
-        );
-    border:1px solid rgba(0,234,255,.2);
-    box-shadow:0 0 24px rgba(0,234,255,.12);
-}
-
-.brand h1{
-    font-size:17px;
-    font-weight:900;
-    letter-spacing:1px;
-}
-
-.brand p{
-    margin-top:4px;
-    color:var(--cyan);
-    font-size:8px;
-    letter-spacing:1.7px;
-}
-
-.header-actions{
-    display:flex;
-    align-items:center;
-    gap:7px;
-}
-
-.lang-btn{
-    height:34px;
-    padding:0 11px;
-    border-radius:11px;
-    border:1px solid rgba(0,234,255,.18);
-    background:rgba(0,234,255,.06);
-    color:#9aefff;
-    font-size:9px;
-    font-weight:900;
-}
+.brand{display:flex;align-items:center;gap:11px;min-width:0}
+.brand-mark{flex:0 0 38px;width:38px;height:38px}
+.brand h1{font-family:var(--math);font-size:14px;font-weight:700;line-height:1.3;white-space:nowrap}
+.brand p{font-size:12px;color:var(--faint)}
 
 .status{
-    display:flex;
-    align-items:center;
-    gap:6px;
-    padding:8px 10px;
-    border-radius:20px;
-    background:rgba(0,245,160,.055);
-    border:1px solid rgba(0,245,160,.16);
-    color:var(--green);
-    font-size:8px;
-    font-weight:900;
+    display:inline-flex;align-items:center;gap:7px;flex:0 0 auto;
+    padding:5px 12px;border-radius:99px;
+    background:rgba(53,211,154,.12);color:var(--ok);
+    font-size:12px;font-weight:700;
 }
+.status::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.status.warn{background:rgba(246,183,60,.12);color:var(--warn)}
+.status.bad{background:rgba(255,107,134,.12);color:var(--bad)}
 
-.status-dot{
-    width:6px;
-    height:6px;
-    border-radius:50%;
-    background:var(--green);
-    box-shadow:0 0 9px var(--green);
-}
-
-/* HERO */
-
-.hero{
-    margin-top:14px;
-    padding:24px 17px 18px;
-    text-align:center;
-}
-
-.user-label{
-    color:var(--muted);
-    font-size:8px;
-    letter-spacing:2px;
-    margin-bottom:7px;
-}
-
+/* hero */
+.hero{padding:26px 20px 22px;margin-bottom:14px;text-align:center}
+.user-label{font-size:13px;color:var(--muted)}
 .username{
-    font-size:28px;
-    font-weight:900;
-    background:linear-gradient(
-        90deg,
-        #fff,
-        #00eaff,
-        #478cff,
-        #8964ff
-    );
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
+    margin-top:2px;
+    font-family:var(--display);font-size:26px;font-weight:700;letter-spacing:-.01em;
+    word-break:break-word;
 }
 
-/* MAIN CIRCLE */
-
-.usage-circle{
-    position:relative;
-    width:218px;
-    height:218px;
-    margin:24px auto 22px;
-}
-
-.usage-circle svg{
-    width:218px;
-    height:218px;
-    transform:rotate(-90deg);
-    overflow:visible;
-}
-
-.circle-bg{
-    fill:none;
-    stroke:rgba(0,234,255,.065);
-    stroke-width:11;
-}
-
+.usage-circle{position:relative;width:216px;height:216px;margin:22px auto 24px}
+.usage-circle svg{width:100%;height:100%;transform:rotate(-90deg)}
+.circle-bg{fill:none;stroke:var(--ink);stroke-width:14}
 .circle-value{
-    fill:none;
-    stroke:url(#usageGradient);
-    stroke-width:11;
-    stroke-linecap:round;
-    filter:
-        drop-shadow(0 0 6px rgba(0,234,255,.65))
-        drop-shadow(0 0 14px rgba(0,110,255,.28));
-    transition:stroke-dashoffset 1s ease;
+    fill:none;stroke:var(--accent);stroke-width:14;stroke-linecap:round;
+    animation:ringFill 1.1s cubic-bezier(.2,.7,.2,1) both;
 }
-
+.circle-value.warn{stroke:var(--warn)}
+.circle-value.danger{stroke:var(--bad)}
+@keyframes ringFill{from{stroke-dashoffset:552.92}}
 .circle-inner{
-    position:absolute;
-    inset:32px;
-    border-radius:50%;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    background:
-        radial-gradient(
-            circle,
-            rgba(0,125,255,.2),
-            rgba(2,8,20,.92) 68%
-        );
-    border:1px solid rgba(0,234,255,.1);
-    box-shadow:
-        inset 0 0 35px rgba(0,120,255,.1),
-        0 0 30px rgba(0,110,255,.08);
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
 }
+.circle-percent{font-family:var(--display);font-size:42px;font-weight:700;letter-spacing:-.02em;line-height:1}
+.circle-label{margin-top:6px;font-size:13px;color:var(--muted)}
+.circle-total{margin-top:2px;font-size:13px;font-weight:700;color:var(--text)}
 
-.circle-percent{
-    font-size:36px;
-    font-weight:900;
-    text-shadow:0 0 20px rgba(0,234,255,.4);
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;text-align:left}
+.stat{padding:14px 16px;border-radius:14px;background:var(--ink);border:1px solid var(--line2)}
+.stat-label{font-size:12px;font-weight:600;color:var(--faint)}
+.stat-value{margin-top:4px;font-family:var(--display);font-size:19px;font-weight:700;letter-spacing:-.01em}
+
+/* sections */
+.section{padding:20px;margin-bottom:14px}
+.section-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px}
+.section-title h2{font-family:var(--display);font-size:17px;font-weight:700}
+.section-title .tag{
+    font-size:12px;font-weight:700;color:var(--muted);
+    padding:4px 11px;border-radius:99px;background:var(--panel2);border:1px solid var(--line);
 }
+.section-hint{margin-bottom:16px;font-size:13px;color:var(--muted)}
 
-.circle-label{
-    margin-top:4px;
-    color:var(--cyan);
-    font-size:9px;
-    letter-spacing:2px;
-    font-weight:900;
-}
-
-.circle-total{
-    margin-top:5px;
-    color:var(--muted);
-    font-size:8px;
-}
-
-/* STATS */
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:9px;
-}
-
-.stat{
-    position:relative;
-    padding:14px 12px;
-    min-height:91px;
-    text-align:left;
-    border-radius:17px;
-    background:rgba(1,7,18,.68);
-    border:1px solid rgba(255,255,255,.055);
-    overflow:hidden;
-}
-
-.stat::after{
-    content:"";
-    position:absolute;
-    right:-25px;
-    bottom:-25px;
-    width:70px;
-    height:70px;
-    border-radius:50%;
-    background:rgba(0,180,255,.05);
-    filter:blur(15px);
-}
-
-.stat-icon{
-    font-size:17px;
-    margin-bottom:8px;
-}
-
-.stat-label{
-    color:var(--muted);
-    font-size:8px;
-    letter-spacing:.7px;
-}
-
-.stat-value{
-    margin-top:5px;
-    font-size:15px;
-    font-weight:900;
-    color:#fff;
-}
-
-/* SECTIONS */
-
-.section{
-    margin-top:14px;
-    padding:18px;
-}
-
-.section-title{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    margin-bottom:14px;
-}
-
-.section-title h2{
-    font-size:13px;
-    font-weight:900;
-    letter-spacing:.5px;
-}
-
-.section-title span{
-    color:var(--cyan);
-    font-size:8px;
-    letter-spacing:1.2px;
-}
-
-/* SUBSCRIPTION */
-
-.sub-box{
-    padding:13px;
-    border-radius:17px;
-    background:rgba(0,0,0,.27);
-    border:1px solid rgba(0,234,255,.1);
-}
-
-.sub-label{
-    color:var(--muted);
-    font-size:8px;
-    margin-bottom:8px;
-}
-
-.sub-row{
-    display:flex;
-    gap:7px;
-}
-
+.sub-row{display:flex;gap:8px}
 .sub-input{
-    flex:1;
-    min-width:0;
-    height:42px;
-    border-radius:11px;
-    background:#020711;
-    border:1px solid rgba(255,255,255,.06);
-    color:#83efff;
-    padding:0 11px;
-    font-size:9px;
-    outline:none;
+    flex:1;min-width:0;height:46px;padding:0 14px;
+    border-radius:10px;border:1px solid var(--line);
+    background:var(--ink);color:var(--muted);
+    font-family:inherit;font-size:13px;outline:none;
 }
+.sub-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(54,197,244,.16)}
 
 .btn{
-    border:0;
-    color:#fff;
-    font-weight:900;
-    border-radius:11px;
-    transition:.18s;
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    height:46px;padding:0 18px;
+    border-radius:10px;border:1px solid transparent;
+    font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;
+    transition:background .15s,border-color .15s,transform .1s;
 }
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{background:#5cd3f8}
+.btn-ghost{background:var(--panel2);border-color:var(--line);color:var(--text)}
+.btn-ghost:hover{border-color:#34487a;background:#1a2846}
+.btn-sm{height:36px;padding:0 14px;font-size:12px;border-radius:9px}
 
-.btn:active{
-    transform:scale(.96);
-}
+.action-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
 
-.copy-btn{
-    width:72px;
-    background:linear-gradient(135deg,#00bfff,#2563ff);
-    box-shadow:0 0 18px rgba(0,191,255,.16);
-}
-
-.action-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:8px;
-    margin-top:9px;
-}
-
-.action{
-    min-height:44px;
-    background:rgba(0,234,255,.065);
-    border:1px solid rgba(0,234,255,.14);
-    color:#8cefff;
-    font-size:9px;
-}
-
-.action.purple{
-    background:rgba(123,77,255,.08);
-    border-color:rgba(123,77,255,.18);
-    color:#c0adff;
-}
-
-/* USAGE GRAPH */
-
-.graph-box{
-    padding:15px;
-    border-radius:18px;
-    background:rgba(1,7,18,.68);
-    border:1px solid rgba(255,255,255,.05);
-}
-
-.graph-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:13px;
-}
-
-.graph-total{
-    display:flex;
-    align-items:center;
-    gap:7px;
-    color:#fff;
-    font-size:10px;
-    font-weight:900;
-}
-
-.graph-dot{
-    width:7px;
-    height:7px;
-    border-radius:50%;
-    background:var(--cyan);
-    box-shadow:0 0 9px var(--cyan);
-}
-
-.graph-note{
-    color:var(--muted);
-    font-size:8px;
-}
-
-.graph{
-    position:relative;
-    height:150px;
-    overflow:hidden;
-    border-radius:13px;
-    background:
-        linear-gradient(rgba(0,234,255,.045) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(0,234,255,.035) 1px,transparent 1px);
-    background-size:100% 30px,50px 100%;
-}
-
-.graph svg{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-}
-
-.graph-fill{
-    fill:url(#graphFill);
-}
-
-.graph-line{
-    fill:none;
-    stroke:url(#graphLine);
-    stroke-width:3;
-    stroke-linecap:round;
-    stroke-linejoin:round;
-    filter:drop-shadow(0 0 5px rgba(0,234,255,.5));
-}
-
-.graph-labels{
-    display:flex;
-    justify-content:space-between;
-    margin-top:8px;
-    color:#53627c;
-    font-size:7px;
-}
-
-/* CONFIGS */
-
+/* configs */
 .config{
-    padding:14px;
-    margin-bottom:9px;
-    border-radius:17px;
-    background:rgba(1,7,18,.72);
-    border:1px solid rgba(255,255,255,.055);
-    transition:.2s;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:13px 14px;margin-top:8px;border-radius:12px;
+    background:var(--ink);border:1px solid var(--line2);
 }
+.config-title{font-size:14px;font-weight:700;word-break:break-word}
+.config-tag{margin-top:2px;font-size:12px;color:var(--faint);word-break:break-word}
+.config-actions{display:flex;gap:6px;flex:0 0 auto}
 
-.config:last-child{
-    margin-bottom:0;
-}
-
-.config:active{
-    border-color:rgba(0,234,255,.3);
-}
-
-.config-top{
-    display:flex;
-    align-items:flex-start;
-    justify-content:space-between;
-    gap:10px;
-}
-
-.config-title{
-    font-size:11px;
-    font-weight:900;
-    color:#fff;
-}
-
-.config-tag{
-    margin-top:5px;
-    color:#71809c;
-    font-size:8px;
-}
-
-.config-actions{
-    display:flex;
-    gap:5px;
-    flex-shrink:0;
-}
-
-.small-btn{
-    padding:8px 10px;
-    font-size:8px;
-}
-
-.small-copy{
-    background:linear-gradient(135deg,#00bfff,#2563ff);
-}
-
-.small-qr{
-    background:rgba(123,77,255,.13);
-    border:1px solid rgba(123,77,255,.2);
-    color:#c5b8ff;
-}
-
-/* CREATED BY */
-
+/* footer */
 .creator{
-    margin-top:14px;
-    padding:17px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
+    display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    padding:18px 20px;margin-bottom:14px;
 }
+.creator-title{font-size:12px;color:var(--faint)}
+.creator-name{margin-top:1px;font-size:15px;font-weight:800;color:var(--accent)}
+.creator-name:hover{text-decoration:underline}
+.creator-actions{display:flex;gap:8px;flex-wrap:wrap}
 
-.creator-left{
-    display:flex;
-    align-items:center;
-    gap:11px;
-}
+.footer{text-align:center;padding:6px 0 0;font-size:13px;color:var(--faint)}
+.footer b{font-family:var(--math);font-weight:700;color:var(--muted)}
 
-.creator-icon{
-    width:39px;
-    height:39px;
-    border-radius:12px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:rgba(0,234,255,.07);
-    border:1px solid rgba(0,234,255,.13);
-    color:var(--cyan);
-}
-
-.creator-title{
-    font-size:9px;
-    color:var(--muted);
-}
-
-.creator-name{
-    margin-top:4px;
-    font-size:11px;
-    font-weight:900;
-}
-
-.creator-link{
-    text-decoration:none;
-    color:#8cefff;
-    font-size:9px;
-    font-weight:900;
-    padding:9px 12px;
-    border-radius:11px;
-    background:rgba(0,234,255,.06);
-    border:1px solid rgba(0,234,255,.13);
-}
-
-/* FOOTER */
-
-.footer{
-    text-align:center;
-    padding:20px 5px 14px;
-}
-
-.footer-main{
-    color:#4e5d76;
-    font-size:9px;
-}
-
-.footer-main b{
-    color:var(--cyan);
-}
-
-.footer-sub{
-    margin-top:6px;
-    color:#35425a;
-    font-size:7px;
-    letter-spacing:1.5px;
-}
-
-/* QR MODAL */
-
+/* QR modal */
 #qrModal{
-    position:fixed;
-    inset:0;
-    z-index:1000;
-    display:none;
-    align-items:center;
-    justify-content:center;
+    position:fixed;inset:0;z-index:100;
+    display:none;align-items:center;justify-content:center;
     padding:20px;
-    background:rgba(0,0,0,.84);
-    backdrop-filter:blur(14px);
+    background:rgba(3,6,14,.8);backdrop-filter:blur(6px);
 }
-
-#qrModal.active{
-    display:flex;
-}
-
-.qr-wrap{
-    text-align:center;
-}
-
-.qr-box{
-    padding:20px;
-    border-radius:24px;
-    background:#fff;
-    box-shadow:
-        0 0 50px rgba(0,234,255,.22);
-}
-
-.qr-close{
-    margin-top:13px;
-    color:#94a3b8;
-    font-size:9px;
-    font-weight:800;
-}
-
-/* TOAST */
+#qrModal.active{display:flex}
+.qr-wrap{text-align:center}
+.qr-box{display:inline-block;padding:14px;border-radius:18px;background:#fff}
+.qr-close{margin-top:14px;font-size:13px;color:var(--muted)}
 
 .toast{
-    position:fixed;
-    z-index:2000;
-    left:50%;
-    bottom:20px;
-    transform:translate(-50%,100px);
-    padding:11px 18px;
-    border-radius:30px;
-    background:#071525;
-    border:1px solid rgba(0,234,255,.25);
-    color:#8cefff;
-    font-size:9px;
-    font-weight:900;
-    box-shadow:0 0 25px rgba(0,234,255,.15);
-    transition:.25s;
-    white-space:nowrap;
+    position:fixed;left:50%;bottom:24px;z-index:200;
+    transform:translate(-50%,20px);
+    max-width:calc(100vw - 32px);
+    padding:12px 18px;border-radius:12px;
+    background:var(--panel2);border:1px solid var(--line);
+    color:var(--text);font-size:13px;font-weight:600;
+    opacity:0;pointer-events:none;
+    transition:opacity .2s,transform .2s;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media(max-width:480px){
+    .username{font-size:22px}
+    .usage-circle{width:196px;height:196px}
+    .circle-percent{font-size:38px}
+    .sub-row{flex-direction:column}
+    .sub-input{flex:none;width:100%}
+    .brand h1{font-size:13px}
+    .config{flex-direction:column;align-items:stretch}
+    .config-actions .btn{flex:1}
+    .creator-actions,.creator-actions .btn{width:100%}
 }
 
-.toast.show{
-    transform:translate(-50%,0);
-}
-
-/* MOBILE */
-
-@media(max-width:520px){
-
-    .page{
-        padding:10px;
-    }
-
-    .header{
-        padding:14px;
-    }
-
-    .logo{
-        width:40px;
-        height:40px;
-    }
-
-    .brand h1{
-        font-size:15px;
-    }
-
-    .status{
-        display:none;
-    }
-
-    .username{
-        font-size:24px;
-    }
-
-    .usage-circle,
-    .usage-circle svg{
-        width:195px;
-        height:195px;
-    }
-
-    .circle-inner{
-        inset:29px;
-    }
-
-    .circle-percent{
-        font-size:32px;
-    }
-
-    .stat{
-        min-height:86px;
-        padding:12px 10px;
-    }
-
-    .section{
-        padding:15px;
-    }
-
-    .creator{
-        padding:14px;
-    }
-}
-
-@media(max-width:360px){
-
-    .brand p{
-        display:none;
-    }
-
-    .lang-btn{
-        padding:0 8px;
-    }
-
-    .stats{
-        gap:7px;
-    }
-
-    .stat-value{
-        font-size:13px;
-    }
-
-    .action-grid{
-        grid-template-columns:1fr;
-    }
-
-    .sub-row{
-        flex-direction:column;
-    }
-
-    .copy-btn{
-        width:100%;
-        height:40px;
-    }
+@media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
 }
 </style>
 </head>
@@ -825,913 +212,209 @@ button{
 
 <div class="page">
 
-    <!-- HEADER -->
     <header class="card header">
-
         <div class="brand">
-
-            <div class="logo">P</div>
-
+            <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                <rect width="40" height="40" rx="11" fill="#0f2238"/>
+                <circle cx="20" cy="20" r="13" stroke="#36c5f4" stroke-width="2" opacity=".32"/>
+                <circle cx="20" cy="20" r="8.5" stroke="#36c5f4" stroke-width="2" opacity=".64"/>
+                <circle cx="20" cy="20" r="4" fill="#36c5f4"/>
+            </svg>
             <div>
-                <h1>PabloPanel</h1>
-                <p id="brandSubtitle">SUBSCRIPTION PANEL</p>
+                <h1>🌐 𝕋𝕦𝕣𝕓𝕠 𝕋𝕦𝕟𝕟𝕖𝕝 𝕄𝕄 🌐</h1>
+                <p>Subscription</p>
             </div>
-
         </div>
 
-        <div class="header-actions">
-
-            <button
-                class="lang-btn"
-                onclick="toggleLanguage()"
-                id="langBtn">
-                فارسی
-            </button>
-
-            <div class="status">
-                <span class="status-dot"></span>
-                <span id="statusText">ACTIVE</span>
-            </div>
-
-        </div>
-
+        {% if days_left|float <= 0 %}
+            <span class="status bad">Expired</span>
+        {% elif percent|float >= 100 %}
+            <span class="status warn">Quota used</span>
+        {% else %}
+            <span class="status">Active</span>
+        {% endif %}
     </header>
 
-
-    <!-- USER / USAGE -->
     <section class="card hero">
 
-        <div class="user-label" id="userLabel">
-            SUBSCRIPTION USER
-        </div>
-
-        <div class="username">
-            {{ user_name }}
-        </div>
-
+        <div class="user-label">Subscription for</div>
+        <div class="username">{{ user_name }}</div>
 
         <div class="usage-circle">
-
-            <svg viewBox="0 0 218 218">
-
-                <defs>
-
-                    <linearGradient
-                        id="usageGradient"
-                        x1="0%"
-                        y1="0%"
-                        x2="100%"
-                        y2="100%">
-
-                        <stop offset="0%" stop-color="#00eaff"/>
-                        <stop offset="50%" stop-color="#168cff"/>
-                        <stop offset="100%" stop-color="#7b4dff"/>
-
-                    </linearGradient>
-
-                </defs>
-
-                <circle
-                    class="circle-bg"
-                    cx="109"
-                    cy="109"
-                    r="88">
-                </circle>
-
+            <svg viewBox="0 0 218 218" aria-hidden="true">
+                <circle class="circle-bg" cx="109" cy="109" r="88"></circle>
                 <circle
                     id="usageCircle"
-                    class="circle-value"
-                    cx="109"
-                    cy="109"
-                    r="88"
+                    class="circle-value {% if percent|float >= 90 %}danger{% elif percent|float >= 70 %}warn{% endif %}"
+                    cx="109" cy="109" r="88"
                     stroke-dasharray="552.92"
                     stroke-dashoffset="{{ 552.92 - (552.92 * percent / 100) }}">
                 </circle>
-
             </svg>
 
             <div class="circle-inner">
-
-                <div class="circle-percent">
-                    {{ percent }}%
-                </div>
-
-                <div
-                    class="circle-label"
-                    id="usedLabel">
-                    USED
-                </div>
-
-                <div class="circle-total">
-                    {{ quota_gb }} GB
-                </div>
-
+                <div class="circle-percent">{{ percent }}%</div>
+                <div class="circle-label">used</div>
+                <div class="circle-total">of {{ quota_gb }} GB</div>
             </div>
-
         </div>
-
-
-        <!-- STATS -->
 
         <div class="stats">
-
             <div class="stat">
-
-                <div class="stat-icon"></div>
-
-                <div
-                    class="stat-label"
-                    data-en="TOTAL TRAFFIC"
-                    data-fa="حجم کل">
-                    TOTAL TRAFFIC
-                </div>
-
-                <div class="stat-value">
-                    {{ quota_gb }} GB
-                </div>
-
+                <div class="stat-label">Total quota</div>
+                <div class="stat-value">{{ quota_gb }} GB</div>
             </div>
-
-
             <div class="stat">
-
-                <div class="stat-icon"></div>
-
-                <div
-                    class="stat-label"
-                    data-en="USED TRAFFIC"
-                    data-fa="حجم مصرف شده">
-                    USED TRAFFIC
-                </div>
-
-                <div class="stat-value">
-                    {{ used_gb }} GB
-                </div>
-
+                <div class="stat-label">Used</div>
+                <div class="stat-value">{{ used_gb }} GB</div>
             </div>
-
-
             <div class="stat">
-
-                <div class="stat-icon"></div>
-
-                <div
-                    class="stat-label"
-                    data-en="REMAINING"
-                    data-fa="حجم باقی مانده">
-                    REMAINING
-                </div>
-
-                <div class="stat-value">
-                    {{ remaining_gb }} GB
-                </div>
-
+                <div class="stat-label">Remaining</div>
+                <div class="stat-value">{{ remaining_gb }} GB</div>
             </div>
-
-
             <div class="stat">
-
-                <div class="stat-icon"></div>
-
-                <div
-                    class="stat-label"
-                    data-en="DAYS LEFT"
-                    data-fa="روزهای باقی مانده">
-                    DAYS LEFT
-                </div>
-
-                <div class="stat-value">
-                    {{ days_left }} DAYS
-                </div>
-
+                <div class="stat-label">Days left</div>
+                <div class="stat-value">{{ days_left }} days</div>
             </div>
-
         </div>
 
     </section>
 
-
-    <!-- SUBSCRIPTION -->
-
     <section class="card section">
 
         <div class="section-title">
+            <h2>Subscription link</h2>
+        </div>
+        <p class="section-hint">Paste this link into your VPN app to load all your configs at once.</p>
 
-            <h2 id="subTitle">
-                SUBSCRIPTION LINK
-            </h2>
-
-            <span id="syncText">
-                SYNC READY
-            </span>
-
+        <div class="sub-row">
+            <input id="subUrlField" class="sub-input" value="{{ sub_url }}" readonly aria-label="Subscription link">
+            <button onclick="copySubLink()" class="btn btn-primary">Copy link</button>
         </div>
 
-
-        <div class="sub-box">
-
-            <div
-                class="sub-label"
-                id="personalSub">
-                YOUR PERSONAL SUBSCRIPTION
-            </div>
-
-
-            <div class="sub-row">
-
-                <input
-                    id="subUrlField"
-                    class="sub-input"
-                    value="{{ sub_url }}"
-                    readonly
-                >
-
-                <button
-                    onclick="copySubLink()"
-                    class="btn copy-btn"
-                    id="copySubBtn">
-                    COPY
-                </button>
-
-            </div>
-
-
-            <div class="action-grid">
-
-                <button
-                    onclick="openSubLink()"
-                    class="btn action"
-                    id="openBtn">
-                    OPEN SUBSCRIPTION
-                </button>
-
-                <button
-                    onclick="copyAllConfigs()"
-                    class="btn action purple"
-                    id="copyAllBtn">
-                    COPY ALL CONFIGS
-                </button>
-
-            </div>
-
+        <div class="action-grid">
+            <button onclick="openSubLink()" class="btn btn-ghost">Open link</button>
+            <button onclick="copyAllConfigs()" class="btn btn-ghost">Copy all configs</button>
         </div>
 
     </section>
 
-
-    <!-- USAGE GRAPH -->
-
     <section class="card section">
 
         <div class="section-title">
-
-            <h2 id="usageTitle">
-                USAGE OVERVIEW
-            </h2>
-
-            <span id="usageBadge">
-                LIVE DATA
-            </span>
-
+            <h2>Your configs</h2>
+            <span class="tag">{{ configs|length }}</span>
         </div>
-
-
-        <div class="graph-box">
-
-            <div class="graph-head">
-
-                <div class="graph-total">
-
-                    <span class="graph-dot"></span>
-
-                    <span id="consumedText">
-                        {{ used_gb }} GB USED
-                    </span>
-
-                </div>
-
-                <div
-                    class="graph-note"
-                    id="graphNote">
-                    Current usage
-                </div>
-
-            </div>
-
-
-            <div class="graph">
-
-                <svg
-                    viewBox="0 0 700 150"
-                    preserveAspectRatio="none">
-
-                    <defs>
-
-                        <linearGradient
-                            id="graphLine"
-                            x1="0"
-                            y1="0"
-                            x2="1"
-                            y2="0">
-
-                            <stop offset="0%" stop-color="#00eaff"/>
-                            <stop offset="50%" stop-color="#168cff"/>
-                            <stop offset="100%" stop-color="#7b4dff"/>
-
-                        </linearGradient>
-
-
-                        <linearGradient
-                            id="graphFill"
-                            x1="0"
-                            y1="0"
-                            x2="0"
-                            y2="1">
-
-                            <stop
-                                offset="0%"
-                                stop-color="#00bfff"
-                                stop-opacity=".20"/>
-
-                            <stop
-                                offset="100%"
-                                stop-color="#00bfff"
-                                stop-opacity="0"/>
-
-                        </linearGradient>
-
-                    </defs>
-
-
-                    <!-- Decorative usage curve.
-                         The real current usage is shown above
-                         and in the main percentage ring. -->
-
-                    <path
-                        class="graph-fill"
-                        d="
-                        M0 119
-                        C40 108 58 127 95 108
-                        S150 75 190 103
-                        S250 125 285 91
-                        S340 68 375 97
-                        S435 120 470 79
-                        S535 61 565 91
-                        S625 123 700 63
-                        L700 150
-                        L0 150 Z">
-                    </path>
-
-
-                    <path
-                        class="graph-line"
-                        d="
-                        M0 119
-                        C40 108 58 127 95 108
-                        S150 75 190 103
-                        S250 125 285 91
-                        S340 68 375 97
-                        S435 120 470 79
-                        S535 61 565 91
-                        S625 123 700 63">
-                    </path>
-
-                </svg>
-
-            </div>
-
-
-            <div class="graph-labels">
-
-                <span id="graphStart">START</span>
-                <span id="graphMiddle">USAGE</span>
-                <span id="graphEnd">NOW</span>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- CONFIGS -->
-
-    <section class="card section">
-
-        <div class="section-title">
-
-            <h2 id="configsTitle">
-                YOUR CONFIGS
-            </h2>
-
-            <span>
-                {{ configs|length }} CONFIGS
-            </span>
-
-        </div>
-
 
         {% for cfg in configs %}
-
         <div class="config">
-
-            <div class="config-top">
-
-                <div>
-
-                    <div class="config-title">
-                        {{ cfg.title }}
-                    </div>
-
-                    <div class="config-tag">
-                        {{ cfg.tag if cfg.tag is defined else cfg.desc }}
-                    </div>
-
-                </div>
-
-
-                <div class="config-actions">
-
-                    <button
-                        onclick="copyText(`{{ cfg.config }}`)"
-                        class="btn small-btn small-copy">
-                        <span class="copyConfigText">COPY</span>
-                    </button>
-
-                    <button
-                        onclick="showMiniQR(`{{ cfg.config }}`)"
-                        class="btn small-btn small-qr">
-                        QR
-                    </button>
-
-                </div>
-
+            <div>
+                <div class="config-title">{{ cfg.title }}</div>
+                <div class="config-tag">{{ cfg.tag if cfg.tag is defined else cfg.desc }}</div>
             </div>
 
+            <div class="config-actions">
+                <button onclick="copyText(`{{ cfg.config }}`)" class="btn btn-sm btn-primary">Copy</button>
+                <button onclick="showMiniQR(`{{ cfg.config }}`)" class="btn btn-sm btn-ghost">QR code</button>
+            </div>
         </div>
-
         {% endfor %}
 
     </section>
 
-
-    <!-- CREATED BY -->
-
     <section class="card creator">
-
-        <div class="creator-left">
-
-            <div class="creator-icon">
-                ✦
-            </div>
-
-            <div>
-
-                <div
-                    class="creator-title"
-                    id="createdText">
-                    CREATED BY
-                </div>
-
-                <div class="creator-name">
-                    Pablo
-                </div>
-
-            </div>
-
+        <div>
+            <div class="creator-title">Developer</div>
+            <a class="creator-name" href="https://t.me/turbomm750" target="_blank" rel="noopener">@turbomm750</a>
         </div>
 
-
-        <a
-            href="https://t.me/pablo_artor"
-            target="_blank"
-            class="creator-link">
-            @pablo_artor
-        </a>
-
+        <div class="creator-actions">
+            <a href="https://t.me/arsar2027" target="_blank" rel="noopener" class="btn btn-primary">Join Telegram</a>
+            <a href="https://t.me/turbomm750" target="_blank" rel="noopener" class="btn btn-ghost">Contact developer</a>
+        </div>
     </section>
 
-
-    <!-- FOOTER -->
-
     <footer class="footer">
-
-        <div class="footer-main">
-            <span id="poweredText">POWERED BY</span>
-            <b>PabloPanel</b>
-        </div>
-
-        <div class="footer-sub">
-            PABLOPANEL SUBSCRIPTION
-        </div>
-
+        Powered by <b>🌐 𝕋𝕦𝕣𝕓𝕠 𝕋𝕦𝕟𝕟𝕖𝕝 𝕄𝕄 🌐</b>
     </footer>
 
 </div>
 
-
-<!-- QR MODAL -->
-
-<div
-    id="qrModal"
-    onclick="closeMiniQR()">
-
-    <div
-        class="qr-wrap"
-        onclick="event.stopPropagation()">
-
+<div id="qrModal" onclick="closeMiniQR()">
+    <div class="qr-wrap" onclick="event.stopPropagation()">
         <div class="qr-box">
             <div id="miniQR"></div>
         </div>
-
-        <div
-            class="qr-close"
-            id="qrCloseText">
-            TAP OUTSIDE TO CLOSE
-        </div>
-
+        <div class="qr-close">Tap outside to close</div>
     </div>
-
 </div>
 
-
-<!-- TOAST -->
-
-<div
-    id="toast"
-    class="toast">
-    COPIED
-</div>
-
+<div id="toast" class="toast"></div>
 
 <script>
 
-/* =========================
-   SUBSCRIPTION DATA
-========================= */
-
 const subLink = "{{ sub_url }}";
 
-
-/* =========================
-   TOAST
-========================= */
-
 function showToast(text){
-
     const toast = document.getElementById("toast");
-
     toast.innerText = text;
-
     toast.classList.add("show");
-
     clearTimeout(window.toastTimer);
-
     window.toastTimer = setTimeout(function(){
-
         toast.classList.remove("show");
-
-    },1800);
+    }, 2000);
 }
 
-
-/* =========================
-   COPY SUBSCRIPTION
-========================= */
+function copyToClipboard(text, message){
+    navigator.clipboard.writeText(text)
+        .then(function(){ showToast(message); })
+        .catch(function(){ showToast("Copy failed. Your browser blocked clipboard access."); });
+}
 
 function copySubLink(){
-
-    navigator.clipboard.writeText(subLink)
-    .then(function(){
-
-        showToast(
-            currentLang === "fa"
-            ? "لینک اشتراک کپی شد"
-            : "SUBSCRIPTION COPIED"
-        );
-
-    });
-
+    copyToClipboard(subLink, "Subscription link copied");
 }
-
-
-/* =========================
-   OPEN SUBSCRIPTION
-========================= */
 
 function openSubLink(){
-
-    window.open(
-        subLink,
-        "_blank"
-    );
-
+    window.open(subLink, "_blank");
 }
-
-
-/* =========================
-   COPY ALL
-========================= */
 
 function copyAllConfigs(){
-
     try{
-
         const raw = atob("{{ sub_raw }}");
-
-        navigator.clipboard.writeText(raw)
-        .then(function(){
-
-            showToast(
-                currentLang === "fa"
-                ? "همه کانفیگ‌ها کپی شدند"
-                : "ALL CONFIGS COPIED"
-            );
-
-        });
-
+        copyToClipboard(raw, "All configs copied");
     }catch(error){
-
-        showToast(
-            currentLang === "fa"
-            ? "خطا در کپی کانفیگ‌ها"
-            : "COPY ERROR"
-        );
-
+        showToast("Could not copy the configs");
     }
-
 }
-
-
-/* =========================
-   COPY CONFIG
-========================= */
 
 function copyText(txt){
-
-    navigator.clipboard.writeText(txt)
-    .then(function(){
-
-        showToast(
-            currentLang === "fa"
-            ? "کانفیگ کپی شد"
-            : "CONFIG COPIED"
-        );
-
-    });
-
+    copyToClipboard(txt, "Config copied");
 }
 
-
-/* =========================
-   QR
-========================= */
-
 function showMiniQR(cfg){
-
-    const modal =
-        document.getElementById("qrModal");
-
-    const box =
-        document.getElementById("miniQR");
+    const modal = document.getElementById("qrModal");
+    const box = document.getElementById("miniQR");
 
     box.innerHTML = "";
 
-    new QRCode(box,{
-        text:cfg,
-        width:220,
-        height:220,
-        correctLevel:QRCode.CorrectLevel.M
+    new QRCode(box, {
+        text: cfg,
+        width: 220,
+        height: 220,
+        correctLevel: QRCode.CorrectLevel.M
     });
 
     modal.classList.add("active");
-
 }
-
 
 function closeMiniQR(){
-
-    document
-        .getElementById("qrModal")
-        .classList.remove("active");
-
+    document.getElementById("qrModal").classList.remove("active");
 }
 
-
-/* =========================
-   LANGUAGE
-========================= */
-
-let currentLang = "en";
-
-
-const translations = {
-
-    en:{
-        lang:"فارسی",
-        subtitle:"SUBSCRIPTION PANEL",
-        status:"ACTIVE",
-        user:"SUBSCRIPTION USER",
-        used:"USED",
-        totalTraffic:"TOTAL TRAFFIC",
-        usedTraffic:"USED TRAFFIC",
-        remaining:"REMAINING",
-        daysLeft:"DAYS LEFT",
-        days:"DAYS",
-        subscription:"SUBSCRIPTION LINK",
-        sync:"SYNC READY",
-        personal:"YOUR PERSONAL SUBSCRIPTION",
-        copy:"COPY",
-        open:"OPEN SUBSCRIPTION",
-        copyAll:"COPY ALL CONFIGS",
-        overview:"USAGE OVERVIEW",
-        live:"LIVE DATA",
-        current:"Current usage",
-        start:"START",
-        usage:"USAGE",
-        now:"NOW",
-        configs:"YOUR CONFIGS",
-        created:"CREATED BY",
-        powered:"POWERED BY",
-        qrClose:"TAP OUTSIDE TO CLOSE"
-    },
-
-    fa:{
-        lang:"English",
-        subtitle:"پنل اشتراک",
-        status:"فعال",
-        user:"کاربر اشتراک",
-        used:"مصرف شده",
-        totalTraffic:"حجم کل",
-        usedTraffic:"حجم مصرف شده",
-        remaining:"حجم باقی مانده",
-        daysLeft:"روزهای باقی مانده",
-        days:"روز",
-        subscription:"لینک اشتراک",
-        sync:"آماده همگام‌سازی",
-        personal:"اشتراک اختصاصی شما",
-        copy:"کپی",
-        open:"باز کردن اشتراک",
-        copyAll:"کپی همه کانفیگ‌ها",
-        overview:"نمای کلی مصرف",
-        live:"اطلاعات زنده",
-        current:"مصرف فعلی",
-        start:"شروع",
-        usage:"مصرف",
-        now:"اکنون",
-        configs:"کانفیگ‌های شما",
-        created:"ساخته شده توسط",
-        powered:"ارائه شده توسط",
-        qrClose:"برای بستن بیرون را لمس کنید"
-    }
-
-};
-
-
-function toggleLanguage(){
-
-    currentLang =
-        currentLang === "en"
-        ? "fa"
-        : "en";
-
-    applyLanguage();
-
-}
-
-
-function applyLanguage(){
-
-    const t =
-        translations[currentLang];
-
-    document.documentElement.lang =
-        currentLang;
-
-    document.documentElement.dir =
-        currentLang === "fa"
-        ? "rtl"
-        : "ltr";
-
-
-    document.getElementById("langBtn").innerText =
-        t.lang;
-
-    document.getElementById("brandSubtitle").innerText =
-        t.subtitle;
-
-    document.getElementById("statusText").innerText =
-        t.status;
-
-    document.getElementById("userLabel").innerText =
-        t.user;
-
-    document.getElementById("usedLabel").innerText =
-        t.used;
-
-    document.getElementById("subTitle").innerText =
-        t.subscription;
-
-    document.getElementById("syncText").innerText =
-        t.sync;
-
-    document.getElementById("personalSub").innerText =
-        t.personal;
-
-    document.getElementById("copySubBtn").innerText =
-        t.copy;
-
-    document.getElementById("openBtn").innerText =
-        t.open;
-
-    document.getElementById("copyAllBtn").innerText =
-        t.copyAll;
-
-    document.getElementById("usageTitle").innerText =
-        t.overview;
-
-    document.getElementById("usageBadge").innerText =
-        t.live;
-
-    document.getElementById("graphNote").innerText =
-        t.current;
-
-    document.getElementById("graphStart").innerText =
-        t.start;
-
-    document.getElementById("graphMiddle").innerText =
-        t.usage;
-
-    document.getElementById("graphEnd").innerText =
-        t.now;
-
-    document.getElementById("configsTitle").innerText =
-        t.configs;
-
-    document.getElementById("createdText").innerText =
-        t.created;
-
-    document.getElementById("poweredText").innerText =
-        t.powered;
-
-    document.getElementById("qrCloseText").innerText =
-        t.qrClose;
-
-
-    document.querySelectorAll(".stat-label")
-        .forEach(function(el){
-
-            el.innerText =
-                currentLang === "fa"
-                ? el.dataset.fa
-                : el.dataset.en;
-
-        });
-
-
-    document.querySelectorAll(".copyConfigText")
-        .forEach(function(el){
-
-            el.innerText = t.copy;
-
-        });
-
-
-    document.querySelectorAll(".stat-value")
-        .forEach(function(el,index){
-
-            if(index === 3){
-
-                const value =
-                    el.innerText
-                        .replace(" DAYS","")
-                        .replace(" روز","");
-
-                el.innerText =
-                    value +
-                    (currentLang === "fa"
-                    ? " روز"
-                    : " DAYS");
-
-            }
-
-        });
-
-}
-
-
-/* =========================
-   INIT
-========================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function(){
-
-        applyLanguage();
-
-    }
-);
+document.addEventListener("keydown", function(e){
+    if(e.key === "Escape") closeMiniQR();
+});
 
 </script>
 
