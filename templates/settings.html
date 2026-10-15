@@ -1,621 +1,709 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>تنظیمات پنل | Pablo Panel</title>
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌐 𝕋𝕦𝕣𝕓𝕠 𝕋𝕦𝕟𝕟𝕖𝕝 𝕄𝕄 🌐 | Settings</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='11' fill='%230f2238'/%3E%3Ccircle cx='20' cy='20' r='13' stroke='%2336c5f4' stroke-width='2' fill='none' opacity='.35'/%3E%3Ccircle cx='20' cy='20' r='8.5' stroke='%2336c5f4' stroke-width='2' fill='none' opacity='.65'/%3E%3Ccircle cx='20' cy='20' r='4' fill='%2336c5f4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700&family=Noto+Sans+Math&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 
-    <style>
-        :root {
-            --bg: #030611;
-            --card-bg: rgba(10, 16, 33, 0.75);
-            --card-border: rgba(0, 234, 255, 0.14);
-            --cyan: #00eaff;
-            --blue: #2a69ff;
-            --purple: #8338ec;
-            --pink: #ff007f;
-            --text-main: #f8fafc;
-            --text-muted: #7b8fa7;
-            --input-bg: rgba(4, 8, 20, 0.85);
-            --success: #00f098;
-            --danger: #ff477e;
-        }
+:root{
+    --ink:#070c18;
+    --deep:#0a1224;
+    --panel:#101a2f;
+    --panel2:#15213a;
+    --line:#1f2d4d;
+    --line2:#172340;
+    --text:#e8eefc;
+    --muted:#92a0c1;
+    --faint:#62708f;
+    --accent:#36c5f4;
+    --accent-ink:#04202c;
+    --violet:#9a86ff;
+    --ok:#35d39a;
+    --warn:#f6b73c;
+    --bad:#ff6b86;
+    --font:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --display:'Sora','Manrope',system-ui,sans-serif;
+    --math:'Noto Sans Math','Cambria Math','STIX Two Math','Segoe UI Symbol','Apple Symbols','Noto Sans Symbols 2',sans-serif;
+}
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-tap-highlight-color: transparent;
-            font-family: Vazirmatn, Arial, sans-serif;
-        }
+html{scroll-behavior:smooth}
 
-        body {
-            background-color: var(--bg);
-            background-image: 
-                radial-gradient(circle at 15% 15%, rgba(0, 234, 255, 0.12), transparent 35%),
-                radial-gradient(circle at 85% 20%, rgba(131, 56, 236, 0.14), transparent 40%),
-                radial-gradient(circle at 50% 85%, rgba(0, 120, 255, 0.08), transparent 45%);
-            color: var(--text-main);
-            min-height: 100vh;
-            padding: 24px 16px 60px;
-            position: relative;
-            overflow-x: hidden;
-        }
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(900px 500px at 8% -10%, rgba(54,197,244,.07), transparent 60%),
+        var(--ink);
+    color:var(--text);
+    font-family:var(--font);
+    font-size:14px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+}
 
-        /* Ambient Grid */
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background-image: 
-                linear-gradient(rgba(0, 234, 255, 0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 234, 255, 0.025) 1px, transparent 1px);
-            background-size: 36px 36px;
-            pointer-events: none;
-            z-index: 0;
-        }
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
 
-        .container {
-            max-width: 960px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
-        /* TOPBAR / HEADER */
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 18px 24px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 24px;
-            backdrop-filter: blur(25px);
-            margin-bottom: 24px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-        }
+/* ---------- SHELL ---------- */
 
-        .header-brand {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
+.app{display:flex;min-height:100vh}
 
-        .header-logo {
-            width: 46px;
-            height: 46px;
-            border-radius: 14px;
-            border: 1px solid rgba(0, 234, 255, 0.3);
-            box-shadow: 0 0 15px rgba(0, 234, 255, 0.2);
-            object-fit: cover;
-        }
+.backdrop{
+    position:fixed;inset:0;z-index:40;
+    background:rgba(3,6,14,.7);
+    backdrop-filter:blur(4px);
+    opacity:0;pointer-events:none;
+    transition:opacity .2s;
+}
+.backdrop.show{opacity:1;pointer-events:auto}
 
-        .header-title h1 {
-            font-size: 18px;
-            font-weight: 900;
-            background: linear-gradient(90deg, #fff, var(--cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+.sidebar{
+    position:sticky;top:0;
+    width:284px;flex:0 0 284px;
+    height:100vh;
+    display:flex;flex-direction:column;justify-content:space-between;
+    padding:22px 16px 18px;
+    background:var(--deep);
+    border-right:1px solid var(--line2);
+    overflow-y:auto;
+    z-index:50;
+}
 
-        .header-title p {
-            font-size: 11px;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-            margin-top: 2px;
-        }
+.brand{
+    display:flex;align-items:center;gap:11px;
+    padding:2px 8px 22px;
+}
+.brand-mark{flex:0 0 38px;width:38px;height:38px}
+.brand-name{
+    font-family:var(--math);
+    font-size:14px;font-weight:700;line-height:1.25;
+    color:var(--text);
+    white-space:nowrap;
+}
+.brand-sub{font-size:12px;color:var(--faint);margin-top:2px}
 
-        .btn-back {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 18px;
-            border-radius: 14px;
-            background: rgba(0, 234, 255, 0.06);
-            border: 1px solid rgba(0, 234, 255, 0.2);
-            color: var(--cyan);
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: 800;
-            transition: 0.25s;
-        }
+.nav-title{
+    padding:14px 12px 8px;
+    font-size:12px;font-weight:700;color:var(--faint);
+}
 
-        .btn-back:hover {
-            background: rgba(0, 234, 255, 0.15);
-            box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
-            transform: translateY(-2px);
-        }
+.nav-item{
+    position:relative;
+    display:flex;align-items:center;gap:12px;
+    padding:10px 12px;margin-bottom:3px;
+    border-radius:11px;
+    color:var(--muted);
+    transition:background .15s,color .15s;
+}
+.nav-item:hover{background:rgba(255,255,255,.04);color:var(--text)}
+.nav-item.active{background:rgba(54,197,244,.1);color:var(--accent)}
+.nav-item.active::before{
+    content:"";position:absolute;left:-16px;top:9px;bottom:9px;width:3px;
+    border-radius:0 3px 3px 0;background:var(--accent);
+}
+.nav-icon{flex:0 0 20px;width:20px;height:20px;display:grid;place-items:center}
+.nav-icon svg{width:20px;height:20px}
+.nav-text{display:flex;flex-direction:column;min-width:0}
+.nav-text b{font-size:14px;font-weight:700;color:inherit}
+.nav-text small{font-size:12px;color:var(--faint);font-weight:500}
+.nav-item.active .nav-text small{color:rgba(54,197,244,.65)}
+.nav-badge{
+    margin-left:auto;min-width:26px;padding:2px 8px;border-radius:99px;
+    background:var(--panel2);border:1px solid var(--line);
+    color:var(--text);font-size:12px;font-weight:700;text-align:center;
+}
+.nav-item.logout:hover{background:rgba(255,107,134,.1);color:var(--bad)}
 
-        .btn-back svg {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-        }
+.dev-card{
+    margin:0 0 10px;padding:13px 14px;
+    border-radius:13px;
+    background:var(--panel);
+    border:1px solid var(--line2);
+}
+.dev-card small{display:block;font-size:12px;color:var(--faint)}
+.dev-card a{
+    display:inline-block;margin-top:3px;
+    font-weight:800;font-size:14px;color:var(--accent);
+}
+.dev-card a:hover{text-decoration:underline}
 
-        /* GRID SYSTEM */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-            margin-bottom: 24px;
-        }
+.main{flex:1;min-width:0;padding:26px 32px 48px}
 
-        /* CARDS */
-        .glass-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 24px;
-            backdrop-filter: blur(25px);
-            padding: 24px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: border-color 0.3s;
-        }
+.topbar{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    margin-bottom:26px;
+}
+.topbar-left{display:flex;align-items:center;gap:12px;min-width:0}
+.page-title h1{
+    font-family:var(--display);
+    font-size:26px;font-weight:700;letter-spacing:-.01em;line-height:1.2;
+}
+.page-title p{margin-top:3px;color:var(--muted);font-size:14px}
 
-        .glass-card:hover {
-            border-color: rgba(0, 234, 255, 0.3);
-        }
+.mobile-menu{
+    display:none;
+    width:42px;height:42px;flex:0 0 42px;
+    border-radius:12px;border:1px solid var(--line);
+    background:var(--panel);color:var(--text);cursor:pointer;
+    place-items:center;
+}
+.mobile-menu svg{width:20px;height:20px}
 
-        .glass-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--cyan), var(--purple), transparent);
-        }
+.profile{
+    display:flex;align-items:center;gap:11px;
+    padding:6px 8px 6px 14px;
+    border-radius:99px;
+    background:var(--panel);border:1px solid var(--line2);
+}
+.profile-info{text-align:right;line-height:1.25}
+.profile-info strong{display:block;font-size:13px;font-weight:700}
+.profile-info span{display:flex;align-items:center;justify-content:flex-end;gap:6px;font-size:12px;color:var(--ok)}
+.profile-info span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok)}
+.avatar{
+    width:36px;height:36px;border-radius:50%;
+    display:grid;place-items:center;
+    background:var(--accent);color:var(--accent-ink);
+    font-family:var(--display);font-weight:800;font-size:15px;
+}
 
-        .card-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 22px;
-            padding-bottom: 14px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
+/* ---------- CARDS ---------- */
 
-        .card-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+.card{
+    background:var(--panel);
+    border:1px solid var(--line2);
+    border-radius:18px;
+}
 
-        .card-title-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            background: rgba(0, 234, 255, 0.08);
-            border: 1px solid rgba(0, 234, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--cyan);
-        }
+.stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+    margin-bottom:18px;
+}
+.stat{padding:18px 20px}
+.stat-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.stat-label{font-size:13px;font-weight:600;color:var(--muted)}
+.stat-icon{
+    width:34px;height:34px;border-radius:10px;
+    display:grid;place-items:center;
+    background:rgba(54,197,244,.12);color:var(--accent);
+}
+.stat-icon svg{width:18px;height:18px}
+.stat-icon.green{background:rgba(53,211,154,.12);color:var(--ok)}
+.stat-icon.red{background:rgba(255,107,134,.12);color:var(--bad)}
+.stat-icon.violet{background:rgba(154,134,255,.14);color:var(--violet)}
+.stat-icon.orange{background:rgba(246,183,60,.12);color:var(--warn)}
+.stat-value{
+    margin-top:14px;
+    font-family:var(--display);font-size:32px;font-weight:700;letter-spacing:-.02em;line-height:1.1;
+}
+.stat-value small{font-family:var(--font);font-size:14px;font-weight:600;color:var(--faint);margin-left:4px;letter-spacing:0}
+.stat-note{margin-top:6px;font-size:12px;color:var(--faint)}
 
-        .card-title-icon svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-        }
+.section-title{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    margin-bottom:16px;
+}
+.section-title h2{font-family:var(--display);font-size:17px;font-weight:700;letter-spacing:-.005em}
+.section-title .tag{
+    font-size:12px;font-weight:700;color:var(--muted);
+    padding:4px 11px;border-radius:99px;
+    background:var(--panel2);border:1px solid var(--line);
+}
 
-        .card-title h2 {
-            font-size: 15px;
-            font-weight: 800;
-            color: var(--text-main);
-        }
+/* ---------- BUTTONS ---------- */
 
-        .card-title p {
-            font-size: 10px;
-            color: var(--text-muted);
-        }
+.btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    height:40px;padding:0 16px;
+    border-radius:10px;border:1px solid transparent;
+    font-size:13px;font-weight:700;cursor:pointer;
+    transition:background .15s,border-color .15s,color .15s,transform .1s;
+    white-space:nowrap;
+}
+.btn:active{transform:scale(.98)}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.btn svg{width:16px;height:16px;flex:0 0 16px}
+.btn-sm{height:34px;padding:0 12px;font-size:12px;border-radius:9px}
 
-        .badge-status {
-            font-size: 10px;
-            font-weight: 800;
-            padding: 4px 10px;
-            border-radius: 20px;
-            background: rgba(0, 234, 255, 0.06);
-            border: 1px solid rgba(0, 234, 255, 0.2);
-            color: var(--cyan);
-            letter-spacing: 0.5px;
-        }
+.btn-primary,.btn-blue{background:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover,.btn-blue:hover{background:#5cd3f8}
 
-        /* FORM ELEMENTS */
-        .form-group {
-            margin-bottom: 18px;
-        }
+.btn-ghost,.btn-dark{background:var(--panel2);border-color:var(--line);color:var(--text)}
+.btn-ghost:hover,.btn-dark:hover{border-color:#34487a;background:#1a2846}
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--text-muted);
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
+.btn-green{background:rgba(53,211,154,.12);border-color:rgba(53,211,154,.28);color:var(--ok)}
+.btn-green:hover{background:rgba(53,211,154,.2)}
 
-        .input-box {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
+.btn-orange{background:rgba(246,183,60,.1);border-color:rgba(246,183,60,.28);color:var(--warn)}
+.btn-orange:hover{background:rgba(246,183,60,.18)}
 
-        input {
-            width: 100%;
-            height: 48px;
-            padding: 0 16px;
-            background: var(--input-bg);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 14px;
-            color: #fff;
-            font-size: 13px;
-            outline: none;
-            transition: 0.25s;
-        }
+.btn-red{background:rgba(255,107,134,.1);border-color:rgba(255,107,134,.28);color:var(--bad)}
+.btn-red:hover{background:rgba(255,107,134,.2)}
 
-        input:focus {
-            border-color: var(--cyan);
-            box-shadow: 0 0 15px rgba(0, 234, 255, 0.15);
-        }
+.btn-violet{background:var(--violet);color:#150f3a}
+.btn-violet:hover{background:#b0a0ff}
 
-        input::placeholder {
-            color: #435269;
-            font-size: 12px;
-        }
+/* ---------- FORMS ---------- */
 
-        .input-action {
-            position: absolute;
-            left: 12px;
-            background: none;
-            border: none;
-            color: #556882;
-            cursor: pointer;
-            padding: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.2s;
-        }
+.form-group{margin-bottom:18px}
+.form-group>label,.field-label{
+    display:flex;align-items:center;justify-content:space-between;gap:8px;
+    margin-bottom:8px;
+    font-size:13px;font-weight:700;color:var(--text);
+}
+.label-hint{font-size:12px;font-weight:600;color:var(--faint)}
+.helper{margin-top:7px;font-size:12px;color:var(--faint);line-height:1.55}
+.helper a{color:var(--accent);font-weight:700}
+.helper a:hover{text-decoration:underline}
 
-        .input-action:hover {
-            color: var(--cyan);
-        }
+.input{
+    width:100%;height:46px;padding:0 14px;
+    border-radius:10px;
+    border:1px solid var(--line);
+    background:var(--ink);
+    color:var(--text);
+    font-family:inherit;font-size:14px;
+    outline:none;
+    transition:border-color .15s,box-shadow .15s;
+}
+.input::placeholder{color:var(--faint)}
+.input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(54,197,244,.16)}
+.input[readonly]{color:var(--muted)}
 
-        .input-action svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-        }
+.input-wrap{position:relative}
+.input-wrap .input{padding-right:48px}
+.input-action{
+    position:absolute;right:6px;top:50%;transform:translateY(-50%);
+    width:36px;height:36px;border-radius:8px;border:0;
+    background:transparent;color:var(--faint);cursor:pointer;
+    display:grid;place-items:center;
+}
+.input-action:hover{color:var(--text);background:rgba(255,255,255,.05)}
+.input-action svg{width:18px;height:18px;fill:currentColor}
 
-        .helper-text {
-            margin-top: 6px;
-            font-size: 10px;
-            color: #556882;
-            line-height: 1.5;
-        }
+/* ---------- BADGES ---------- */
 
-        .helper-text a {
-            color: var(--cyan);
-            text-decoration: none;
-        }
+.badge{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:4px 11px;border-radius:99px;
+    font-size:12px;font-weight:700;
+}
+.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.badge.active{background:rgba(53,211,154,.12);color:var(--ok)}
+.badge.off{background:rgba(146,160,193,.12);color:var(--muted)}
+.badge.expired{background:rgba(255,107,134,.12);color:var(--bad)}
 
-        /* CURRENT USER CHIP */
-        .user-chip {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 16px;
-            background: rgba(0, 234, 255, 0.03);
-            border: 1px solid rgba(0, 234, 255, 0.1);
-            border-radius: 14px;
-            margin-bottom: 18px;
-        }
+/* ---------- MODAL ---------- */
 
-        .user-chip-name {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
+.overlay{
+    position:fixed;inset:0;z-index:100;
+    display:none;align-items:center;justify-content:center;
+    padding:18px;
+    background:rgba(3,6,14,.74);
+    backdrop-filter:blur(6px);
+}
+.overlay.show{display:flex}
+.modal{
+    width:100%;max-width:480px;max-height:92vh;overflow-y:auto;
+    padding:24px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:20px;
+    box-shadow:0 30px 80px rgba(0,0,0,.55);
+    animation:modalIn .18s ease-out;
+}
+.modal.wide{max-width:640px}
+@keyframes modalIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:20px}
+.modal-head h3{font-family:var(--display);font-size:19px;font-weight:700;letter-spacing:-.01em}
+.modal-sub{margin-top:3px;font-size:13px;color:var(--muted)}
+.close{
+    width:34px;height:34px;flex:0 0 34px;border-radius:9px;border:1px solid var(--line);
+    background:var(--panel2);color:var(--muted);font-size:20px;line-height:1;cursor:pointer;
+}
+.close:hover{color:var(--text);border-color:#34487a}
 
-        .user-chip-name strong {
-            color: var(--cyan);
-            font-size: 13px;
-            margin-right: 4px;
-        }
+/* ---------- TOAST ---------- */
 
-        /* PASSWORD STRENGTH */
-        .strength-meter {
-            height: 4px;
-            background: rgba(255, 255, 255, 0.06);
-            border-radius: 4px;
-            margin-top: 8px;
-            overflow: hidden;
-            display: none;
-        }
+.toast{
+    position:fixed;left:50%;bottom:26px;z-index:200;
+    transform:translate(-50%,20px);
+    max-width:calc(100vw - 32px);
+    padding:12px 18px;border-radius:12px;
+    background:var(--panel2);border:1px solid var(--line);
+    color:var(--text);font-size:13px;font-weight:600;
+    opacity:0;pointer-events:none;
+    transition:opacity .2s,transform .2s;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast.success{border-color:rgba(53,211,154,.45);color:var(--ok)}
+.toast.error{border-color:rgba(255,107,134,.45);color:var(--bad)}
 
-        .strength-bar {
-            height: 100%;
-            width: 0%;
-            transition: 0.3s;
-        }
+/* ---------- RESPONSIVE ---------- */
 
-        /* CARD ACTION BUTTON */
-        .card-btn-wrap {
-            margin-top: 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 18px;
-        }
+@media(max-width:1180px){
+    .stats{grid-template-columns:repeat(2,1fr)}
+}
 
-        .btn-save {
-            width: 100%;
-            height: 48px;
-            border: none;
-            border-radius: 14px;
-            color: #fff;
-            font-size: 12px;
-            font-weight: 900;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: 0.25s;
-        }
+@media(max-width:960px){
+    .sidebar{
+        position:fixed;left:0;top:0;bottom:0;
+        transform:translateX(-102%);
+        transition:transform .22s ease;
+        box-shadow:20px 0 60px rgba(0,0,0,.5);
+    }
+    .sidebar.open{transform:none}
+    .nav-item.active::before{left:-16px}
+    .mobile-menu{display:grid}
+    .main{padding:18px 16px 40px}
+    .page-title h1{font-size:21px}
+    .page-title p{font-size:13px}
+}
 
-        .btn-blue {
-            background: linear-gradient(100deg, #00d2ff, #1c5bf0);
-            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.15);
-        }
+@media(max-width:560px){
+    .profile-info{display:none}
+    .profile{padding:4px}
+    .stat{padding:15px 16px}
+    .stat-value{font-size:26px}
+    .modal{padding:20px 18px;border-radius:18px}
+}
 
-        .btn-blue:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 0 25px rgba(0, 210, 255, 0.35);
-        }
+@media(max-width:380px){
+    .stats{grid-template-columns:1fr}
+}
 
-        .btn-purple {
-            background: linear-gradient(100deg, #9d4edd, #6a0dad);
-            box-shadow: 0 4px 15px rgba(157, 78, 221, 0.15);
-        }
+@media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
 
-        .btn-purple:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 0 25px rgba(157, 78, 221, 0.35);
-        }
 
-        .btn-save:disabled {
-            opacity: 0.6;
-            cursor: wait;
-        }
+/* ---------- SETTINGS ---------- */
 
-        .btn-save svg {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-        }
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch}
 
-        /* MESSAGE BANNER */
-        .message-box {
-            display: none;
-            padding: 14px 18px;
-            border-radius: 16px;
-            font-size: 12px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            text-align: center;
-            animation: fadeIn 0.3s ease;
-        }
+.settings-card{
+    display:flex;flex-direction:column;justify-content:space-between;gap:24px;
+    padding:24px;
+}
 
-        .message-box.error {
-            display: block;
-            background: rgba(255, 71, 126, 0.1);
-            border: 1px solid rgba(255, 71, 126, 0.3);
-            color: var(--danger);
-        }
+.card-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:22px}
+.card-icon{
+    flex:0 0 44px;width:44px;height:44px;border-radius:13px;
+    display:grid;place-items:center;
+    background:rgba(54,197,244,.12);color:var(--accent);
+}
+.card-icon.violet{background:rgba(154,134,255,.14);color:var(--violet)}
+.card-icon svg{width:22px;height:22px;fill:currentColor}
+.card-header h2{font-family:var(--display);font-size:18px;font-weight:700;letter-spacing:-.005em}
+.card-header p{margin-top:3px;font-size:13px;color:var(--muted)}
 
-        .message-box.success {
-            display: block;
-            background: rgba(0, 240, 152, 0.1);
-            border: 1px solid rgba(0, 240, 152, 0.3);
-            color: var(--success);
-        }
+.current-user{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    margin-bottom:20px;padding:12px 14px;border-radius:12px;
+    background:var(--ink);border:1px solid var(--line2);
+    font-size:13px;color:var(--muted);
+}
+.current-user strong{color:var(--text);font-weight:700}
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+.strength{display:none;margin-top:10px}
+.strength-track{height:6px;border-radius:99px;background:var(--ink);border:1px solid var(--line2);overflow:hidden}
+.strength-bar{height:100%;width:0;border-radius:99px;transition:width .2s,background-color .2s}
+.strength-text{margin-top:6px;font-size:12px;color:var(--faint)}
 
-        .spinner {
-            width: 16px;
-            height: 16px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-top-color: #fff;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
+.note{
+    margin-top:4px;padding:13px 15px;border-radius:12px;
+    background:var(--ink);border:1px dashed var(--line);
+    font-size:13px;color:var(--muted);line-height:1.6;
+}
+.note strong{color:var(--text)}
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+.message-box{
+    display:none;margin-bottom:18px;padding:13px 16px;border-radius:12px;
+    font-size:14px;font-weight:600;
+}
+.message-box.success{display:block;background:rgba(53,211,154,.1);border:1px solid rgba(53,211,154,.35);color:var(--ok)}
+.message-box.error{display:block;background:rgba(255,107,134,.1);border:1px solid rgba(255,107,134,.35);color:var(--bad)}
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            body {
-                padding: 16px 12px 40px;
-            }
+.save-btn{width:100%;height:46px;font-size:14px}
 
-            .header {
-                padding: 14px 16px;
-            }
+.spinner{
+    width:16px;height:16px;border-radius:50%;
+    border:2px solid currentColor;border-right-color:transparent;
+    animation:spin .7s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-            .grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+@media(max-width:1100px){
+    .grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+    .settings-card{padding:18px}
+}
+</style>
 </head>
+
 <body>
 
-<div class="container">
+<div class="app">
 
-    <!-- TOPBAR -->
-    <header class="header">
-        <div class="header-brand">
-            <img src="/static/pablo-logo.png" alt="Pablo Logo" class="header-logo">
-            <div class="header-title">
-                <h1>تنظیمات و پیکربندی سیستم</h1>
-                <p>PABLO PANEL SYSTEM SETTINGS</p>
+<div class="backdrop" id="backdrop" onclick="closeSidebar()"></div>
+
+<aside class="sidebar" id="sidebar">
+
+    <div>
+        <div class="brand">
+            <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                <rect width="40" height="40" rx="11" fill="#0f2238"/>
+                <circle cx="20" cy="20" r="13" stroke="#36c5f4" stroke-width="2" opacity=".32"/>
+                <circle cx="20" cy="20" r="8.5" stroke="#36c5f4" stroke-width="2" opacity=".64"/>
+                <circle cx="20" cy="20" r="4" fill="#36c5f4"/>
+            </svg>
+            <div>
+                <div class="brand-name">🌐 𝕋𝕦𝕣𝕓𝕠 𝕋𝕦𝕟𝕟𝕖𝕝 𝕄𝕄 🌐</div>
+                <div class="brand-sub">VPN control panel</div>
             </div>
         </div>
-        <a href="/dashboard" class="btn-back">
-            <svg viewBox="0 0 24 24">
-                <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/>
-            </svg>
-            داشبورد
-        </a>
-    </header>
 
-    <div id="messageBox" class="message-box"></div>
+        <div class="nav-title">Menu</div>
+
+        <a href="/dashboard" class="nav-item " onclick="closeSidebar()">
+            <span class="nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+                    <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+                    <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+                    <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+                </svg>
+            </span>
+            <span class="nav-text"><b>Dashboard</b></span>
+        </a>
+
+        <a href="/users" class="nav-item " onclick="closeSidebar()">
+            <span class="nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+            </span>
+            <span class="nav-text"><b>Users</b></span>
+            
+        </a>
+
+        <a href="/settings" class="nav-item active" onclick="closeSidebar()">
+            <span class="nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.2l1.05 1.92a7.7 7.7 0 0 1 1.72.71l2.08-.68 1.52 1.52-.68 2.08c.3.54.54 1.12.71 1.72L20.32 11.5v2.14l-1.92 1.05a7.7 7.7 0 0 1-.71 1.72l.68 2.08-1.52 1.52-2.08-.68a7.7 7.7 0 0 1-1.72.71L12 21.96l-2.14-1.05a7.7 7.7 0 0 1-1.72-.71l-2.08.68-1.52-1.52.68-2.08a7.7 7.7 0 0 1-.71-1.72L2.6 13.64V11.5l1.91-1.03c.17-.61.41-1.18.71-1.72l-.68-2.08 1.52-1.52 2.08.68a7.7 7.7 0 0 1 1.72-.71L12 3.2Z"/>
+                    <circle cx="12" cy="12.57" r="3.05"/>
+                </svg>
+            </span>
+            <span class="nav-text"><b>Settings</b></span>
+        </a>
+
+        <div class="nav-title">Community</div>
+
+        <a href="https://t.me/arsar2027" target="_blank" rel="noopener" class="nav-item">
+            <span class="nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m22 2-7 20-4-9-9-4Z"/>
+                    <path d="M22 2 11 13"/>
+                </svg>
+            </span>
+            <span class="nav-text">
+                <b>Join Telegram</b>
+                <small>News and updates</small>
+            </span>
+        </a>
+
+        <a href="https://t.me/turbomm750" target="_blank" rel="noopener" class="nav-item">
+            <span class="nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m18 16 4-4-4-4"/>
+                    <path d="m6 8-4 4 4 4"/>
+                    <path d="m14.5 4-5 16"/>
+                </svg>
+            </span>
+            <span class="nav-text">
+                <b>Contact developer</b>
+                <small>@turbomm750</small>
+            </span>
+        </a>
+    </div>
+
+    <div>
+        <div class="dev-card">
+            <small>Developer</small>
+            <a href="https://t.me/turbomm750" target="_blank" rel="noopener">@turbomm750</a>
+        </div>
+
+        <a href="/logout" class="nav-item logout">
+            <span class="nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                    <polyline points="16 17 21 12 16 7"/>
+                    <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+            </span>
+            <span class="nav-text"><b>Log out</b></span>
+        </a>
+    </div>
+
+</aside>
+
+
+<main class="main">
+
+    <div class="topbar">
+        <div class="topbar-left">
+            <button class="mobile-menu" onclick="toggleSidebar()" aria-label="Open navigation">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+            </button>
+            <div class="page-title">
+                <h1>Settings</h1>
+                <p>Admin login and Telegram bot for 🌐 𝕋𝕦𝕣𝕓𝕠 𝕋𝕦𝕟𝕟𝕖𝕝 𝕄𝕄 🌐</p>
+            </div>
+        </div>
+
+        <div class="profile">
+            <div class="profile-info">
+                <strong>Administrator</strong>
+                <span>Online</span>
+            </div>
+            <div class="avatar">A</div>
+        </div>
+    </div>
+
+    <div id="messageBox" class="message-box" role="status" aria-live="polite"></div>
 
     <div class="grid">
 
-        <!-- CARD 1: ADMIN ACCOUNT & SECURITY FORM -->
-        <form id="securityForm" class="glass-card">
+        <!-- ADMIN LOGIN -->
+        <form id="securityForm" class="card settings-card">
             <div>
                 <div class="card-header">
-                    <div class="card-title">
-                        <div class="card-title-icon">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12,12A5,5 0 0,0 17,7A5,5 0 0,0 12,2A5,5 0 0,0 7,7A5,5 0 0,0 12,12M12,14C8.13,14 4,16.09 4,20V22H20V20C20,16.09 15.87,14 12,14Z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h2>امنیت و ورود ادمین</h2>
-                            <p>تغییر نام کاربری و رمز اصلی پنل</p>
-                        </div>
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12,17A2,2 0 0,0 14,15A2,2 0 0,0 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10A2,2 0 0,1 6,8H9V6A3,3 0 0,1 12,3A3,3 0 0,1 15,6V8H18M12,5A1,1 0 0,0 11,6V8H13V6A1,1 0 0,0 12,5Z"/></svg>
                     </div>
-                    <span class="badge-status">ROOT</span>
+                    <div>
+                        <h2>Admin login</h2>
+                        <p>Change the panel username and password</p>
+                    </div>
                 </div>
 
-                <div class="user-chip">
-                    <div class="user-chip-name">
-                        مدیر کنونی سیستم: <strong>{{ current_username }}</strong>
-                    </div>
+                <div class="current-user">
+                    <span>Signed in as <strong>{{ current_username }}</strong></span>
                 </div>
 
                 <div class="form-group">
-                    <label>نام کاربری جدید</label>
-                    <div class="input-box">
-                        <input type="text" id="username" value="{{ current_username }}" placeholder="نام کاربری ادمین" required autocomplete="username">
-                    </div>
+                    <label for="username">New username</label>
+                    <input class="input" type="text" id="username" value="{{ current_username }}" placeholder="Admin username" required autocomplete="username">
                 </div>
 
                 <div class="form-group">
-                    <label>رمز عبور فعلی</label>
-                    <div class="input-box">
-                        <input type="password" id="current_password" placeholder="جهت تایید، رمز فعلی را وارد کنید" required autocomplete="current-password">
-                        <button type="button" class="input-action" onclick="togglePass('current_password', this)">
+                    <label for="current_password">Current password</label>
+                    <div class="input-wrap">
+                        <input class="input" type="password" id="current_password" placeholder="Enter your current password" required autocomplete="current-password">
+                        <button type="button" class="input-action" onclick="togglePass('current_password', this)" aria-label="Show or hide password">
                             <svg viewBox="0 0 24 24"><path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"/></svg>
                         </button>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label>رمز عبور جدید</label>
-                    <div class="input-box">
-                        <input type="password" id="password" placeholder="حداقل ۴ کاراکتر" required autocomplete="new-password">
-                        <button type="button" class="input-action" onclick="togglePass('password', this)">
+                    <label for="password">New password</label>
+                    <div class="input-wrap">
+                        <input class="input" type="password" id="password" placeholder="At least 4 characters" required autocomplete="new-password">
+                        <button type="button" class="input-action" onclick="togglePass('password', this)" aria-label="Show or hide password">
                             <svg viewBox="0 0 24 24"><path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"/></svg>
                         </button>
                     </div>
-                    <div class="strength-meter" id="strengthMeter">
-                        <div class="strength-bar" id="strengthBar"></div>
+                    <div class="strength" id="strengthMeter">
+                        <div class="strength-track"><div class="strength-bar" id="strengthBar"></div></div>
+                        <div class="strength-text" id="strengthText"></div>
                     </div>
                 </div>
 
-                <div class="form-group" style="margin-bottom: 0;">
-                    <label>تکرار رمز عبور جدید</label>
-                    <div class="input-box">
-                        <input type="password" id="confirm_password" placeholder="تکرار رمز عبور جدید" required autocomplete="new-password">
-                        <button type="button" class="input-action" onclick="togglePass('confirm_password', this)">
+                <div class="form-group" style="margin-bottom:0;">
+                    <label for="confirm_password">Confirm new password</label>
+                    <div class="input-wrap">
+                        <input class="input" type="password" id="confirm_password" placeholder="Repeat the new password" required autocomplete="new-password">
+                        <button type="button" class="input-action" onclick="togglePass('confirm_password', this)" aria-label="Show or hide password">
                             <svg viewBox="0 0 24 24"><path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"/></svg>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="card-btn-wrap">
-                <button type="submit" id="saveSecurityBtn" class="btn-save btn-blue">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12,17A2,2 0 0,0 14,15A2,2 0 0,0 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10A2,2 0 0,1 6,8H9V6A3,3 0 0,1 12,3A3,3 0 0,1 15,6V8H18M12,5A1,1 0 0,0 11,6V8H13V6A1,1 0 0,0 12,5Z"/>
-                    </svg>
-                    ذخیره امنیت و تغییر رمز
-                </button>
-            </div>
+            <button type="submit" id="saveSecurityBtn" class="btn btn-primary save-btn">Save new login</button>
         </form>
 
-        <!-- CARD 2: TELEGRAM BOT FORM -->
-        <form id="telegramForm" class="glass-card">
+        <!-- TELEGRAM BOT -->
+        <form id="telegramForm" class="card settings-card">
             <div>
                 <div class="card-header">
-                    <div class="card-title">
-                        <div class="card-title-icon" style="color: #00c8ff; background: rgba(0, 200, 255, 0.08);">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h2>دستیار تلگرام</h2>
-                            <p>اتصال ربات تلگرام برای کاربران و ادمین</p>
-                        </div>
+                    <div class="card-icon violet">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
                     </div>
-                    <span class="badge-status">BOT SERVICE</span>
+                    <div>
+                        <h2>Telegram bot</h2>
+                        <p>Connect a bot for your users and the admin</p>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label>توکن ربات تلگرام (Telegram Bot Token)</label>
-                    <div class="input-box">
-                        <input type="text" id="tg_token" value="{{ telegram_token }}" placeholder="123456789:ABCdefGhIJKlmNoPQRsTUVwxyZ">
-                    </div>
-                    <p class="helper-text">توکن را از ربات رسمی <a href="https://t.me/BotFather" target="_blank">@BotFather</a> در تلگرام بسازید و اینجا قرار دهید.</p>
+                    <label for="tg_token">Bot token</label>
+                    <input class="input" type="text" id="tg_token" value="{{ telegram_token }}" placeholder="123456789:ABCdefGhIJKlmNoPQRsTUVwxyZ" autocomplete="off">
+                    <p class="helper">Create a bot with <a href="https://t.me/BotFather" target="_blank" rel="noopener">@BotFather</a> on Telegram and paste its token here.</p>
                 </div>
 
                 <div class="form-group">
-                    <label>شناسه عددی اکانت ادمین (Admin Chat ID)</label>
-                    <div class="input-box">
-                        <input type="text" id="tg_admin_id" value="{{ telegram_admin_id }}" placeholder="مثلاً: 584920184">
-                    </div>
-                    <p class="helper-text">شناسه عددی تلگرام خود را می‌توانید از ربات <a href="https://t.me/userinfobot" target="_blank">@userinfobot</a> دریافت کنید.</p>
+                    <label for="tg_admin_id">Admin chat ID</label>
+                    <input class="input" type="text" id="tg_admin_id" value="{{ telegram_admin_id }}" placeholder="e.g. 584920184" autocomplete="off">
+                    <p class="helper">Get your numeric Telegram ID from <a href="https://t.me/userinfobot" target="_blank" rel="noopener">@userinfobot</a>.</p>
                 </div>
 
-                <div style="margin-top: 15px; padding: 12px; background: rgba(0, 234, 255, 0.03); border-radius: 12px; border: 1px dashed rgba(0, 234, 255, 0.15);">
-                    <p style="font-size: 11px; color: var(--text-muted); line-height: 1.6;">
-                        💡 <strong>قابلیت ربات:</strong> کاربران با فرستادن نام یا UUID خود می‌توانند باقی‌مانده حجم و زمان خود را ببینند. شما با چت‌آیدی ادمین، دکمه‌های آمار سرور و فهرست کاربران را خواهید داشت.
-                    </p>
+                <div class="note">
+                    <strong>What the bot does:</strong> users send their name or UUID to see their remaining quota and time. With your admin chat ID, you also get server stats and a user list.
                 </div>
             </div>
 
-            <div class="card-btn-wrap">
-                <button type="submit" id="saveTelegramBtn" class="btn-save btn-purple">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M17,12L12,17V13H8V11H12V7L17,12Z"/>
-                    </svg>
-                    ذخیره تنظیمات ربات تلگرام
-                </button>
-            </div>
+            <button type="submit" id="saveTelegramBtn" class="btn btn-violet save-btn">Save bot settings</button>
         </form>
 
     </div>
 
+</main>
+
 </div>
 
+<div id="toast" class="toast"></div>
+
 <script>
+function showToast(message, type){
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.className = 'toast show' + (type ? ' ' + type : '');
+    clearTimeout(window.toastTimer);
+    window.toastTimer = setTimeout(()=>{ toast.classList.remove('show'); }, 2600);
+}
+
+function toggleSidebar(){
+    const open = document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('backdrop').classList.toggle('show', open);
+}
+
+function closeSidebar(){
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('backdrop').classList.remove('show');
+}
+
 const messageBox = document.getElementById("messageBox");
 const securityForm = document.getElementById("securityForm");
 const telegramForm = document.getElementById("telegramForm");
@@ -624,23 +712,40 @@ const saveTelegramBtn = document.getElementById("saveTelegramBtn");
 const pwdInput = document.getElementById("password");
 const strengthMeter = document.getElementById("strengthMeter");
 const strengthBar = document.getElementById("strengthBar");
+const strengthText = document.getElementById("strengthText");
+
+const SECURITY_LABEL = "Save new login";
+const TELEGRAM_LABEL = "Save bot settings";
 
 function showMessage(text, type) {
     messageBox.textContent = text;
     messageBox.className = "message-box " + type;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
+function setBusy(btn, label) {
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> ' + label;
+}
+
+function setIdle(btn, label) {
+    btn.disabled = false;
+    btn.textContent = label;
+}
+
+const EYE_OPEN = '<path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"/>';
+const EYE_OFF = '<path d="M11.83,9L15,12.16C15,12.11 15,12.05 15,12A3,3 0 0,0 12,9C11.94,9 11.89,9 11.83,9M7.53,9.8L9.08,11.35C9.03,11.56 9,11.77 9,12A3,3 0 0,0 12,15C12.22,15 12.44,14.97 12.65,14.92L14.2,16.47C13.53,16.8 12.79,17 12,17A5,5 0 0,1 7,12C7,11.21 7.2,10.47 7.53,9.8M2,4.27L4.28,6.55L4.73,7C3.08,8.3 1.78,10 1,12C2.73,16.39 7,19.5 12,19.5C13.55,19.5 15.03,19.2 16.38,18.66L16.81,19.08L19.73,22L21,20.73L3.27,3M12,7A5,5 0 0,1 17,12C17,12.64 16.87,13.26 16.64,13.82L19.57,16.75C21.07,15.5 22.27,13.86 23,12C21.27,7.61 17,4.5 12,4.5C10.6,4.5 9.26,4.75 8,5.2L10.17,7.35C10.74,7.13 11.35,7 12,7Z"/>';
 
 function togglePass(inputId, btn) {
     const input = document.getElementById(inputId);
     const svg = btn.querySelector("svg");
-    
+
     if (input.type === "password") {
         input.type = "text";
-        svg.innerHTML = '<path d="M11.83,9L15,12.16C15,12.11 15,12.05 15,12A3,3 0 0,0 12,9C11.94,9 11.89,9 11.83,9M7.53,9.8L9.08,11.35C9.03,11.56 9,11.77 9,12A3,3 0 0,0 12,15C12.22,15 12.44,14.97 12.65,14.92L14.2,16.47C13.53,16.8 12.79,17 12,17A5,5 0 0,1 7,12C7,11.21 7.2,10.47 7.53,9.8M2,4.27L4.28,6.55L4.73,7C3.08,8.3 1.78,10 1,12C2.73,16.39 7,19.5 12,19.5C13.55,19.5 15.03,19.2 16.38,18.66L16.81,19.08L19.73,22L21,20.73L3.27,3M12,7A5,5 0 0,1 17,12C17,12.64 16.87,13.26 16.64,13.82L19.57,16.75C21.07,15.5 22.27,13.86 23,12C21.27,7.61 17,4.5 12,4.5C10.6,4.5 9.26,4.75 8,5.2L10.17,7.35C10.74,7.13 11.35,7 12,7Z"/>';
+        svg.innerHTML = EYE_OFF;
     } else {
         input.type = "password";
-        svg.innerHTML = '<path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"/>';
+        svg.innerHTML = EYE_OPEN;
     }
 }
 
@@ -651,21 +756,24 @@ pwdInput.addEventListener("input", function() {
         return;
     }
     strengthMeter.style.display = "block";
+
     let score = 0;
     if (val.length >= 4) score += 25;
     if (val.length >= 8) score += 25;
     if (/[0-9]/.test(val)) score += 25;
     if (/[^A-Za-z0-9]/.test(val)) score += 25;
 
-    let color = "#ff477e";
-    if (score >= 75) color = "#00f098";
-    else if (score >= 50) score = 50, color = "#ffaa00";
+    let color = "#ff6b86";
+    let label = "Weak";
+    if (score >= 75) { color = "#35d39a"; label = "Strong"; }
+    else if (score >= 50) { score = 50; color = "#f6b73c"; label = "Fair"; }
 
     strengthBar.style.width = score + "%";
     strengthBar.style.backgroundColor = color;
+    strengthText.textContent = label;
 });
 
-// FORM 1 SUBMIT: Security & Admin Login
+// Admin login
 securityForm.addEventListener("submit", async function(e) {
     e.preventDefault();
 
@@ -675,22 +783,21 @@ securityForm.addEventListener("submit", async function(e) {
     const confirmPassword = document.getElementById("confirm_password").value;
 
     if (username.length < 3) {
-        showMessage("نام کاربری باید حداقل ۳ کاراکتر باشد", "error");
+        showMessage("The username must be at least 3 characters.", "error");
         return;
     }
 
     if (password.length < 4) {
-        showMessage("رمز عبور جدید باید حداقل ۴ کاراکتر باشد", "error");
+        showMessage("The new password must be at least 4 characters.", "error");
         return;
     }
 
     if (password !== confirmPassword) {
-        showMessage("رمز عبور جدید با تکرار آن یکسان نیست", "error");
+        showMessage("The new password and its confirmation do not match.", "error");
         return;
     }
 
-    saveSecurityBtn.disabled = true;
-    saveSecurityBtn.innerHTML = '<div class="spinner"></div> در حال ذخیره...';
+    setBusy(saveSecurityBtn, "Saving...");
 
     try {
         const res = await fetch("/api/settings", {
@@ -707,34 +814,31 @@ securityForm.addEventListener("submit", async function(e) {
         const data = await res.json();
 
         if (!res.ok || data.status !== "success") {
-            showMessage(data.message || "خطایی در ذخیره تنظیمات امنیتی رخ داد", "error");
-            saveSecurityBtn.disabled = false;
-            saveSecurityBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12,17A2,2 0 0,0 14,15A2,2 0 0,0 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10A2,2 0 0,1 6,8H9V6A3,3 0 0,1 12,3A3,3 0 0,1 15,6V8H18M12,5A1,1 0 0,0 11,6V8H13V6A1,1 0 0,0 12,5Z"/></svg> ذخیره امنیت و تغییر رمز';
+            showMessage(data.message || "Could not save the login details.", "error");
+            setIdle(saveSecurityBtn, SECURITY_LABEL);
             return;
         }
 
-        showMessage("✓ اطلاعات ورود با موفقیت تغییر کرد. در حال انتقال به صفحه ورود...", "success");
+        showMessage("Login details updated. Redirecting to the login page...", "success");
 
         setTimeout(() => {
             window.location.href = "/login";
         }, 1500);
 
     } catch (err) {
-        showMessage("خطا در برقراری ارتباط با سرور", "error");
-        saveSecurityBtn.disabled = false;
-        saveSecurityBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12,17A2,2 0 0,0 14,15A2,2 0 0,0 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10A2,2 0 0,1 6,8H9V6A3,3 0 0,1 12,3A3,3 0 0,1 15,6V8H18M12,5A1,1 0 0,0 11,6V8H13V6A1,1 0 0,0 12,5Z"/></svg> ذخیره امنیت و تغییر رمز';
+        showMessage("Could not reach the server.", "error");
+        setIdle(saveSecurityBtn, SECURITY_LABEL);
     }
 });
 
-// FORM 2 SUBMIT: Telegram Bot
+// Telegram bot
 telegramForm.addEventListener("submit", async function(e) {
     e.preventDefault();
 
     const tgToken = document.getElementById("tg_token").value.trim();
     const tgAdminId = document.getElementById("tg_admin_id").value.trim();
 
-    saveTelegramBtn.disabled = true;
-    saveTelegramBtn.innerHTML = '<div class="spinner"></div> در حال ثبت...';
+    setBusy(saveTelegramBtn, "Saving...");
 
     try {
         const res = await fetch("/api/settings", {
@@ -750,21 +854,16 @@ telegramForm.addEventListener("submit", async function(e) {
         const data = await res.json();
 
         if (!res.ok || data.status !== "success") {
-            showMessage(data.message || "خطایی در ذخیره تنظیمات ربات تلگرام رخ داد", "error");
-            saveTelegramBtn.disabled = false;
-            saveTelegramBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M17,12L12,17V13H8V11H12V7L17,12Z"/></svg> ذخیره تنظیمات ربات تلگرام';
-            return;
+            showMessage(data.message || "Could not save the bot settings.", "error");
+        } else {
+            showMessage("Telegram bot settings updated.", "success");
         }
 
-        showMessage("✓ تنظیمات ربات تلگرام با موفقیت به‌روزرسانی شد.", "success");
-        saveTelegramBtn.disabled = false;
-        saveTelegramBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M17,12L12,17V13H8V11H12V7L17,12Z"/></svg> ذخیره تنظیمات ربات تلگرام';
-
     } catch (err) {
-        showMessage("خطا در برقراری ارتباط با سرور", "error");
-        saveTelegramBtn.disabled = false;
-        saveTelegramBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M17,12L12,17V13H8V11H12V7L17,12Z"/></svg> ذخیره تنظیمات ربات تلگرام';
+        showMessage("Could not reach the server.", "error");
     }
+
+    setIdle(saveTelegramBtn, TELEGRAM_LABEL);
 });
 </script>
 
